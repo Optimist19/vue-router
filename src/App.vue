@@ -1,10 +1,38 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <!-- In the router link, if you don't want to use this approach "/" you can use the name approach -->
+  <router-link :to="{name: 'HomePage'}">Home |</router-link>
+  <router-link :to="{name: 'AboutPage'}">About |</router-link>
+  <router-link :to="{name: 'JobS'}">Jobs</router-link>
+
+  <button @click="forward">Forward</button>
+  <button @click="redirect">Home</button>
+  <button @click="back">Backward</button>
   <router-view/>
 </template>
+
+
+<script>
+import {router} from "vue-router"
+export default{
+  name: "App",
+  methods:{
+    forward(){
+      this.$router.go(1)
+    },
+
+    redirect(){
+      // this.$router.push("/")
+      this.$router.push({name: "Home"})
+
+    },
+
+    back(){
+      this.$router.go(-1)
+    }  
+  }
+}
+</script>
+
 
 <style>
 #app {
